@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using FridgeApp;
 
 namespace FridgeApp
 {
@@ -12,6 +11,7 @@ namespace FridgeApp
         private Button setTemperatureButton;
         private Button closeButton; // Новая кнопка для закрытия формы
         private int maxTemperature;
+        Form1 form = new Form1();
 
         public FridgeOpenForm(int initialTemperature, int maxTemperature)
         {
@@ -84,13 +84,14 @@ namespace FridgeApp
                 }
             }
         }
+       
 
         // Обработчик события для кнопки "Закрыть"
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            fridgeTimer.Stop();
             MessageBox.Show("Холодильник закрыт!");
             this.Close(); // Закрывает текущую форму
+             form.Show();
         }
     }
 }

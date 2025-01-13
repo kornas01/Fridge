@@ -8,7 +8,7 @@ namespace FridgeApp
     public partial class Form1 : Form
     {
         private PictureBox fridgePictureBox;
-        private Button openButton;
+        public Button openButton;
         private Button setTimerButton;
         private int remainingTime; // оставшееся время в секундах
         public Timer fridgeTimer;
@@ -55,22 +55,22 @@ namespace FridgeApp
             this.Controls.Add(setTimerButton);
         }
 
-        private void OpenButton_Click(object sender, EventArgs e)
+        public void OpenButton_Click(object sender, EventArgs e)
         {
             openButton.Text = "Холодильник открыт!";
             fridgeTimer.Start(); // Запуск таймера при открытии холодильника
 
             // Создание и открытие формы холодильника
-            int initialTemperature = 5; // Укажите начальную температуру
-            int maxTemperature = 25; // Укажите максимальную температуру
+            int initialTemperature = 5; // начальная температура
+            int maxTemperature = 25; // максимальная температура
 
             FridgeOpenForm fridgeOpenForm = new FridgeOpenForm(initialTemperature, maxTemperature);
-            fridgeOpenForm.Show(); // или fridgeOpenForm.ShowDialog(); в зависимости от ваших нужд
+            fridgeOpenForm.Show();
         }
 
         private void SetTimerButton_Click(object sender, EventArgs e)
         {
-            string input = Microsoft.VisualBasic.Interaction.InputBox("Введите время в секундах:", "Установка таймера", "10");
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Введите время в секундах:", "Установка таймера", "0");
             if (int.TryParse(input, out remainingTime) && remainingTime > 0)
             {
                 MessageBox.Show($"Таймер установлен на {remainingTime} секунд.");
