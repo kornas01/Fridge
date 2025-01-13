@@ -60,6 +60,9 @@ namespace FridgeApp
             openButton.Text = "Холодильник открыт!";
             fridgeTimer.Start(); // Запуск таймера при открытии холодильника
 
+            // Запись в лог
+            LogFridgeOpening();
+
             // Создание и открытие формы холодильника
             int initialTemperature = 5; // начальная температура
             int maxTemperature = 25; // максимальная температура
@@ -93,6 +96,23 @@ namespace FridgeApp
                 fridgeTimer.Stop();
                 MessageBox.Show("Холодильник открыт больше положенного времени!");
             }
+        }
+
+        private void LogFridgeOpening()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "Log.txt");
+
+            // Проверка, существует ли файл
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("Файл Log.txt не найден.");
+            }
+
+            using (StreamWriter writer = new StreamWriter(filePath, true)) // true - для добавления в конец файла
+            {
+                writer.WriteLine($"В {DateTime.Now} дверца открылась");
+            }
+            MessageBox.Show("Запись добавлена в Log.txt");
         }
     }
 }

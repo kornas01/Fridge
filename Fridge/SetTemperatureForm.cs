@@ -16,7 +16,7 @@ namespace FridgeApp
         public int NewTemperature { get; private set; }
         public bool IsMaxTemperature { get; private set; }
 
-        public SetTemperatureForm()
+        public SetTemperatureForm(int currentTemperature)
         {
             InitializeComponent();
             InitializeSetTemperatureForm();
