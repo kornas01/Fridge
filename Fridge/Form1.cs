@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FridgeApp
@@ -68,8 +69,21 @@ namespace FridgeApp
             int maxTemperature = 25; // максимальная температура
 
             FridgeOpenForm fridgeOpenForm = new FridgeOpenForm(initialTemperature, maxTemperature);
-            fridgeOpenForm.Show();
+            fridgeOpenForm.Show(); // Открываем форму холодильника
+
+            // Закрытие основной формы через 2 секунды
+            CloseMainFormAfterDelay();
         }
+
+        private async void CloseMainFormAfterDelay()
+        {
+            // Задержка на 2 секунды
+            await Task.Delay(2000);
+            this.Hide(); // 
+        }
+
+
+
 
         private void SetTimerButton_Click(object sender, EventArgs e)
         {
